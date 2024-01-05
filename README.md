@@ -9,23 +9,24 @@
 ## Prerequisities
 
 ### Pro frontend 
-node.js - v současné verzi 20.10.0
+#### node.js - v současné verzi 20.10.0
+#### Visual Studio Code
 
 ### Pro beckend
-java ve verzi 21
-gradle ve verzi 8.5
+#### java ve verzi 21
+#### gradle ve verzi 8.5
 
 ## Spuštění
 
 ### beckend
-v adresáři CustomJavaBeckend
+v adresáři CustomJavaBeckend spustit prompt řádek, nebo terminál
 
 #### gradle clean build
 #### gradle bootRun
 
 
 ### frontend
-v adresáři MyFrontend spustit promp řádek, nebo terminál
+v adresáři MyFrontend ve VS spustit prompt řádek, nebo terminál
 
 #### npm i
 #### npm run start
