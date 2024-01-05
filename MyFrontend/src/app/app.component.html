@@ -1,0 +1,126 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+<div class="row" align="center">
+  <div class="col-sm-12">
+        <h1>My Application</h1>
+  </div>      
+</div>
+<span *ngIf="!logged">
+
+
+  <div class="row" align="center">
+    <div class="col-sm-6">
+        <mat-form-field style="width: 200px; margin-right: 15px">
+          <input 
+            matInput
+            placeholder="{{'Login'}}"
+            [(ngModel)]="login"
+            [required]="true"
+            />
+
+        </mat-form-field>
+    </div>
+    <div class="col-sm-6">
+        <mat-form-field style="width: 200px; margin-right: 15px">
+          <input 
+            matInput
+            type="password"
+            placeholder="{{'Heslo'}}"
+            [(ngModel)]="password"
+            [required]="true"
+            />
+
+        </mat-form-field>
+    </div>
+
+  </div>
+  <div class="row" align="center">
+    <div class="col-sm-12">
+        <button (click)="makeLogin();" class="btn btn-primary" *ngIf="login&&password">Přihlásit</button>
+        <button (click)="makeLogin();" class="btn btn-primary" *ngIf="!(login&&password)" disabled>Přihlásit</button>
+    </div>
+  </div>
+
+</span>
+<span *ngIf="logged">
+  <div class="row" align="center">
+    <div class="col-sm-12">
+      <mat-form-field style="width: 200px; margin-right: 15px">
+        <input 
+          matInput
+          placeholder="{{'Login'}}"
+          [(ngModel)]="login"
+          [required]="true"
+          disabled
+          />
+
+      </mat-form-field>
+    </div>  
+  </div>
+
+  <div class="row" align="center">
+    <div class="col-sm-6" >
+        <mat-form-field style="width: 200px; margin-right: 15px">
+          <input *ngIf="role=='admin'"
+            matInput
+            type="number"
+            min="1"
+            placeholder="{{'Limit počtu obrázků na stránku'}}"
+            [(ngModel)]="limit"
+            [required]="true"
+            validation="basic-detail"
+            />
+            <input *ngIf="role!='admin'"
+            matInput
+            placeholder="{{'Limit počtu obrázků na stránku'}}"
+            [(ngModel)]="limit"
+            [required]="true"
+            disabled
+            validation="basic-detail"
+            />
+
+        </mat-form-field>
+    </div>
+    <div class="col-sm-6">
+        <button *ngIf="role=='admin'" (click)="changeLimit();" class="btn btn-primary">Změnit limit</button>      
+        <button *ngIf="role!='admin'" (click)="changeLimit();" class="btn btn-primary" disabled>Změnit limit</button>      
+    </div>
+
+  </div>
+  <div class="row" *ngFor="let item of items" align="center">
+    <div class="col-sm-12" *ngIf="!item.fileName">
+          <button (click)="callUpload(item);" class="btn btn-primary">Provést upload obrázku č. {{item.item}}</button>      
+    </div>
+    <div class="col-sm-12" *ngIf="item.fileName!=''">
+          Načten soubor č. {{item.item}}:{{item.fileName}}
+    </div>
+
+  </div>
+  <div class="row" *ngIf="logged&&filesUploaded" align="center">
+    <div class="col-sm-6">
+        <mat-form-field style="width: 200px; margin-right: 15px">
+          <input 
+          matInput
+          min="1"
+          placeholder="{{'Název výstupního PDF souboru'}}"
+          [(ngModel)]="outpuFileName"
+          [required]="true"
+          validation="basic-detail"
+          />
+        </mat-form-field>
+    </div>
+    <div class="col-sm-6">
+        <button (click)="download();" class="btn btn-primary" *ngIf="outpuFileName">Stáhni výstupní soubor</button>
+        <button (click)="download();" class="btn btn-primary" *ngIf="!outpuFileName" disabled>Stáhni výstupní soubor</button>
+    </div>
+  </div>  
+    <div class="row" *ngIf="logged" align="center">
+      <div class="col-sm-12">
+        <button (click)="makeLogout();" class="btn btn-primary">Odhlásit</button>
+      </div>
+    </div>
+
+  </span>
+
+
+<router-outlet></router-outlet>

@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>
+    <div style="display: table-cell; width: 99%;">Zadejte obrázek č.{{counter}} pro Upload a vytvoření PDF soubpru</div>
+    <div style="display: table-cell; padding-left: 30px; width: 5%;">
+        <close-mat-popup (close)="onCloseClick()"></close-mat-popup>
+    </div>
+</h1>
+<div class="row">
+    <div class="col-sm-9">
+            <input id="file" name="file"
+            class="btn btn-primary"
+            type="file" #filePicker
+            (change)="uploadFile($event)"
+            accept=".jpg,.jpeg,.gif,.png,.tiff,.bmp"
+            class="common-input">
+    </div>
+    <div class="col-sm-3">
+            <button mat-button type="button" class="btn btn-primary" (click)="makeTransfer()" *ngIf="uploadDetail.filename">
+              Provést upload
+              </button>
+              <button mat-button type="button" class="btn btn-primary" (click)="makeTransfer()" *ngIf="!uploadDetail.filename" disabled>
+                Provést upload
+                </button>
+  
+    </div>
+  
+</div>
+    

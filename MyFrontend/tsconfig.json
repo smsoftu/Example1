@@ -1,0 +1,29 @@
+{
+  "compileOnSave": false,
+  "enableIvy": true,
+  "compilerOptions": {
+    "downlevelIteration": true,
+    "importHelpers": true,
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "target": "es2015",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "module": "esnext",
+    "baseUrl": "./",
+    "paths": {
+      "@angular/*": [
+          "../node_modules/@angular/*"
+      ],
+      "fs": ["../node_modules/fs-web"] 
+  },
+  }
+}
