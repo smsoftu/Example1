@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Blob;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -155,22 +156,18 @@ public class UserController {
 		        // Creating a PdfDocument object 
 		        Document doc = new Document(pdfDoc);
 		        doc.getPdfDocument().addNewPage();
-			
-		        Map<String, byte[]> map=new HashMap<String, byte[]>();
-		        for(int i=0;i<list.size();i++) {
-		        	UploadEntity u=list.get(i);
-		        	byte[] b=u.getContent();
-		        	map.put(Integer.toString(u.getId()), b);
-		        }
+		        Collections.sort(list,new UploadEntityComparator());
 		
 		        for(int i=0;i<list.size();i++) {
-
-		        	UploadEntity ue=list.get(i);
-		        	byte[] b=map.get(Integer.toString(ue.getId()));
+		        
+		        	UploadEntity ue=list.get(i); 
+		        	byte[] b=ue.getContent();
+		        	if (b!=null) {
 		        	ImageData imageData = ImageDataFactory.create(b);
 		        	Image img = new Image(imageData);
 
 		        	doc.add(img);
+		        	}
 		        }
 		
 		        doc.close();

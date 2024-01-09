@@ -31,9 +31,9 @@ export class AppComponent implements OnInit {
   get filesUploaded():boolean {
     if (this.items&&this.items.length>0) {
     for(let i=0;i<this.items.length;i++) {
-      if (!this.items[i].fileName) return false;
+      if (this.items[i].fileName) return true;
     }
-    return true;
+    return false;
   } else {
     return false;
   }
